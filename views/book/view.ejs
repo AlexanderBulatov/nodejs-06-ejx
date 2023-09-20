@@ -1,0 +1,41 @@
+<%- include('../port/page-start')%>
+<%- include('../port/menu') %>
+
+<h1>Информация о книге</h1>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-body">
+
+                <h5 class="card-title"> Название: &ldquo;<%= book.title %>&rdquo;</h5>
+                <h6 class="card-title"> Автор: <%= book.authors %></h5>
+                <p class="card-text">Описание: <%= book.description %></p>
+                <h6 class="card-title"> Понравилось: <%= book.favorite %></h5>
+                <% console.log('book', book) %>
+                <% if(book.fileName) { %>
+                  <h6 class="card-title"> Файл: <%= book.fileBook %></h7>
+                    <h7 class="card-title"><a class="btn btn-sm btn-primary " href="/books/<%= book.id %>/download" role="button">
+                      <i class="fa fa-download" aria-hidden="true"></i>
+                    </a></h6>
+                    <% } else { %>
+                      <h6 class="card-title"> Файл: отсуствует </h6>
+                    <% } %>
+
+                  <h6 class="card-title"> Редактировать / Удалить </h6>
+                    <a class="btn btn-sm btn-primary" href="/books/update/<%= book.id %>">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <form action="/books/delete/<%= book.id %>" method="POST" class="d-inline">
+                        <button class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                    <% console.log('book2', book) %>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../port/page-end') %>

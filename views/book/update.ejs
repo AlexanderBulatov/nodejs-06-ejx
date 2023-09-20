@@ -1,0 +1,73 @@
+<%- include('../port/page-start', {title: book.title}) %>
+<%- include('../port/menu') %>
+
+<h1>Редактировать информацию о книге</h1>
+
+<div class="row">
+    <div class="col-sm-6">
+
+      <form method="POST" enctype="multipart/form-data" class="mt-5">
+        <div class="form-group">
+            <label for="inputTitle">Заголовок</label>
+            <input type="text"
+                   value="<%= book.title %>"
+                   name="title"
+                   class="form-control"
+                   id="inputTitle">
+        </div>
+
+        <div class="form-group">
+            <label for="inputDesc">Описание</label>
+            <textarea
+                    rows="3"
+                    name="description"
+                    class="form-control"
+                    id="inputDesc"
+            ><%= book.description %></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inputDesc">Автор</label>
+          <textarea
+                  rows="1"
+                  name="authors"
+                  class="form-control"
+                  id="inputDesc"
+          ><%= book.authors %></textarea>
+      </div>
+      <div class="form-group">
+        <label for="inputDesc">Понравилось</label>
+        <textarea
+                rows="1"
+                name="favorite"
+                class="form-control"
+                id="inputDesc"
+        ><%= book.favorite %></textarea>
+    </div>
+        <% if(!book.fileName) { %>
+          <div class="form-group mt-3">
+            <label class="mr-2">Загрузить файл:</label>
+            <input type="file" name="uploaded_file" title="Выбрать файл">
+          </div>
+        <% } %>
+
+        <div class="form-group text-right ">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+    </form>
+
+    <% if(book.fileName) { %>
+      <form action="/books/file/delete/<%= book.id %>" method="POST" class="d-inline" >
+        <h7 class="card-title">Удалить: <%= book.fileBook %></h5>
+        <button class="btn btn-sm btn-danger">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </form>
+
+        <% } else { %>
+
+        <% } %>
+
+    </div>
+</div>
+
+<%- include('../port/page-end') %>
